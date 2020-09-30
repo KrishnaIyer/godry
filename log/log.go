@@ -34,10 +34,9 @@ func FromContext(ctx context.Context) *zap.Logger {
 	return logger
 }
 
-// NewContext returns a new context with a logger and panics if a nil value is passed.
-func NewContext(ctx context.Context, logger *zap.Logger) context.Context {
-	if logger == nil {
-		panic("Nil Logger")
-	}
+// NewContext returns a new context with a logger.
+func NewContext(ctx context.Context) context.Context {
+	logger, _ := zap.NewProduction()
+	defer logger.Sync()
 	return context.WithValue(ctx, loggerKey, logger)
 }
