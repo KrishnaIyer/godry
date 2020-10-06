@@ -35,10 +35,17 @@ func FromContext(ctx context.Context) *zap.Logger {
 }
 
 // New returns a new zap logger.
-func New() *zap.Logger {
-	logger, _ := zap.NewProduction()
+func New() (*zap.Logger, error) {
+	cfg := zap.Config{
+		DisableCaller:     true,
+		DisableStacktrace: true,
+	}
+	logger, err := cfg.Build()
+	if err != nil {
+		return nil, err
+	}
 	defer logger.Sync()
-	return logger
+	return logger, nil
 }
 
 // NewContext returns a new context with a logger and panics if a nil value is passed.
