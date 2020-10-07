@@ -39,6 +39,7 @@ func New() (*zap.Logger, error) {
 	cfg := zap.Config{
 		DisableCaller:     true,
 		DisableStacktrace: true,
+		Encoding:          "console",
 	}
 	logger, err := cfg.Build()
 	if err != nil {
