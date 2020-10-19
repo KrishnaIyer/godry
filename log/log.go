@@ -18,9 +18,13 @@ import (
 	"context"
 
 	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 type loggerKeyType string
+
+// Field is a zapcore.Field
+type Field zapcore.Field
 
 var loggerKey loggerKeyType = "logger"
 
