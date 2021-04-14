@@ -127,6 +127,8 @@ func (mgr *Manager) parseStructToFlags(prefix string, strT reflect.Type) {
 			mgr.flags.StringP(name, short, "", desc)
 		case reflect.Bool:
 			mgr.flags.BoolP(name, short, false, desc)
+		case reflect.Int64:
+			mgr.flags.Int64P(name, short, 0, desc)
 		case reflect.Int:
 			mgr.flags.IntP(name, short, 0, desc)
 		case reflect.Struct:
